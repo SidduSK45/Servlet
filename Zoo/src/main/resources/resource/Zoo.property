@@ -1,0 +1,4 @@
+driver.Class.Name=com.mysql.cj.jdbc.Driver;
+zoo.username=root;
+zoo.password=1234;
+zoo.url=jdbc:mysql://localhost:3306/carpenter;

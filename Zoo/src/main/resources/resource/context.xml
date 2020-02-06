@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<bean class="dao.ZooDAOImpl" id="zooDAOImp">
+	<property name="factory" ref="localSessionFactoryBean"></property>
+	</bean>
+	<bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" 
+	id="localSessionFactoryBean">
+	<!-- <property name="configLocations" value="classpath:resource/mysql.xml"></property> -->
+	<property name="dataSource" ref="driverManagerDataSource" ></property>
+	<property name="annotatedClasses">
+	<list>
+	<value>entity.ZooEntity</value>
+	
+	</list>
+	</property>
+	
+	<property name="hibernateProperties">
+	<props>
+	<prop key="hibernate.show_sql">true</prop>
+	<prop key="hibernate.hbm2ddl.auto">create</prop>
+	<prop key="hibernate.hbm2ddl.auto">update</prop>
+	</props>
+	</property>
+	</bean>
+	
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="driverManagerDataSource">
+	<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+	<property name="username" value="root"></property>
+	<property name="password" value="1234"></property>
+	<property name="url" value="jdbc:mysql://localhost:3306/carpenter"></property>
+	</bean>
+	<bean class="dao.ZooDAOImpl" id="zooDAOImpl">
+	<property name="driverClassName" value="${com.mysql.cj.jdbc.Driver}"></property>
+	<property name="Username" value="${zoo.username}"></property>
+	<property name="Password" value="${zoo.password}"></property>
+	<property name="Url" value="${zoo.url}"></property>
+	</bean>
+	
+
+
+</beans>
